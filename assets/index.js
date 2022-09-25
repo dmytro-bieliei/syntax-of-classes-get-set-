@@ -1,3 +1,4 @@
+'use strict';
 /* Реализовать класс RangeValidator. Обьекты, созданные им должны обладать следующими свойcтвами:
 from(число) 5
 to(число) 50
@@ -11,3 +12,32 @@ Bonus tasks:
 Создать проверки которые убедятся, что число во from меньше числа to и наоборот.
 Создать проверки, которые помогут избежать попадание неправильных типов данных в from и to. */
 
+class RangeValidator {
+  #initialRangeValue;
+  #finalRangeValue;
+
+  constructor(initialRangeValue, finalRangeValue) {
+    this.initialRangeValue = initialRangeValue;
+    this.finalRangeValue = finalRangeValue;
+
+  }
+  get initialRangeValue() {
+    return this.#initialRangeValue;
+  }
+  get finalRangeValue() {
+    return this.#finalRangeValue;
+  }
+  set initialRangeValue() {
+    return this.#initialRangeValue;
+  }
+  
+  set finalRangeValue() {
+
+  }
+  getterRage() {
+
+  }
+  validate() {
+
+  }
+}
