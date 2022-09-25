@@ -30,19 +30,28 @@ class RangeValidator {
   get range(){
     return Array(this.#initialRangeValue, this.#finalRangeValue);
   }
-  set initialRangeValue(value) {
-    if (typeof value !== 'number' || isNaN(value)) {
+  set initialRangeValue(initialValue) {
+    if (typeof initialValue !== 'number' || isNaN(initialValue)) {
       throw new TypeError('Range value must be a number')
+    }
+
+    if (initialRangeValue > finalRangeValue) {
+      this.#initialRangeValue = finalRangeValue;
     }
     this.#initialRangeValue = value;
   }
   
-  set finalRangeValue(value) {
-    if (typeof finallRangeValue !== 'number' || isNaN(this.#finalRangeValue)) {
+  set finalRangeValue(finalValue) {
+    if (typeof finalValue !== 'number' || isNaN(finalValue)) {
       throw new TypeError('Range value must be a number')
+    }
+
+    if (initialRangeValue > finalRangeValue) {
+      this.#finalRangeValue = initialRangeValue;
     }
     this.#finalRangeValue = value;
   }
+ 
   validate(numberInRange){
     if (numberInRange < 5 || numberInRange > 50) {
       throw new Error('Value is out of range. Use value from 5 to 50');
@@ -52,9 +61,9 @@ class RangeValidator {
   
 }
 
-const firstRange = new RangeValidator(6, 18);
+const firstRange = new RangeValidator(6, 47);
 const secondRange = new RangeValidator(-5, 67);
 const thirdRange = new RangeValidator(0, 49);
-const fourthRange = new RangeValidator(6, 87);
+const fourthRange = new RangeValidator(36, 6);
 const fifthRange = new RangeValidator('6', NaN);
 
