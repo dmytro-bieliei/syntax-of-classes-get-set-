@@ -42,4 +42,9 @@ class RangeValidator {
   }
 }
 
-const test = new RangeValidator(6, 18);
+const firstRange = new RangeValidator(6, 18);
+const secondRange = new RangeValidator(-5, 67);
+const thirdRange = new RangeValidator(0, 49);
+const fourthRange = new RangeValidator(6, 87);
+const fifthRange = new RangeValidator('6', NaN);
+
