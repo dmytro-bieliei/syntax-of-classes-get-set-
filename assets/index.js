@@ -17,8 +17,8 @@ class RangeValidator {
   #finalRangeValue;
 
   constructor(initialRangeValue, finalRangeValue) {
-    this.initialRangeValue = initialRangeValue;
-    this.finalRangeValue = finalRangeValue;
+    this.#initialRangeValue = initialRangeValue;
+    this.#finalRangeValue = finalRangeValue;
 
   }
   get initialRangeValue() {
@@ -27,17 +27,19 @@ class RangeValidator {
   get finalRangeValue() {
     return this.#finalRangeValue;
   }
-  set initialRangeValue() {
-    return this.#initialRangeValue;
+  get range(){
+    return Array(this.#initialRangeValue, this.#finalRangeValue);
+  }
+  set initialRangeValue(value) {
+    this.#initialRangeValue = value;
   }
   
-  set finalRangeValue() {
-
-  }
-  getterRage() {
-
+  set finalRangeValue(value) {
+    this.#finalRangeValue = value;
   }
   validate() {
 
   }
 }
+
+const test = new RangeValidator(6, 18);
