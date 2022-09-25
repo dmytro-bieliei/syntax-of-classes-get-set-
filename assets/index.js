@@ -31,15 +31,25 @@ class RangeValidator {
     return Array(this.#initialRangeValue, this.#finalRangeValue);
   }
   set initialRangeValue(value) {
+    if (typeof value !== 'number' || isNaN(value)) {
+      throw new TypeError('Range value must be a number')
+    }
     this.#initialRangeValue = value;
   }
   
   set finalRangeValue(value) {
+    if (typeof finallRangeValue !== 'number' || isNaN(this.#finalRangeValue)) {
+      throw new TypeError('Range value must be a number')
+    }
     this.#finalRangeValue = value;
   }
-  validate() {
-
+  validate(numberInRange){
+    if (numberInRange < 5 || numberInRange > 50) {
+      throw new Error('Value is out of range. Use value from 5 to 50');
+    }
+    return numberInRange;
   }
+  
 }
 
 const firstRange = new RangeValidator(6, 18);
