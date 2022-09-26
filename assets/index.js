@@ -17,8 +17,8 @@ class RangeValidator {
   #finalRangeValue;
 
   constructor(initialRangeValue, finalRangeValue) {
-    this.#initialRangeValue = initialRangeValue;
-    this.#finalRangeValue = finalRangeValue;
+    this.initialRangeValue = initialRangeValue;
+    this.finalRangeValue = finalRangeValue;
 
   }
   get initialRangeValue() {
@@ -30,40 +30,43 @@ class RangeValidator {
   get range(){
     return Array(this.#initialRangeValue, this.#finalRangeValue);
   }
-  set initialRangeValue(initialValue) {
-    if (typeof initialValue !== 'number' || isNaN(initialValue)) {
+  set initialRangeValue(value) {
+    if (typeof value !== 'number' || isNaN(value)) {
       throw new TypeError('Range value must be a number')
     }
-
-    if (initialRangeValue > finalRangeValue) {
-      this.#initialRangeValue = finalRangeValue;
+    if (value < 5 || value > 50) {
+      throw new TypeError('Value must be in range from 5 to 50')
+    }
+    if (value > this.finalRangeValue) {
+      throw new Error('Initial range value must be smaller then final range value')
     }
     this.#initialRangeValue = value;
   }
   
-  set finalRangeValue(finalValue) {
-    if (typeof finalValue !== 'number' || isNaN(finalValue)) {
+  set finalRangeValue(value) {
+    if (typeof value !== 'number' || isNaN(value)) {
       throw new TypeError('Range value must be a number')
     }
+    if (value < 5 || value > 50) {
+      throw new TypeError('Value must be in range from 5 to 50')
+    }
 
-    if (initialRangeValue > finalRangeValue) {
-      this.#finalRangeValue = initialRangeValue;
+    if (value < this.initialRangeValue) {
+      throw new Error('Final range value must be bigger then initial range value')
     }
     this.#finalRangeValue = value;
   }
- 
-  validate(numberInRange){
-    if (numberInRange < 5 || numberInRange > 50) {
-      throw new Error('Value is out of range. Use value from 5 to 50');
+  validate(numberInRange) {
+    if (numberInRange < this.initialRangeValue || numberInRange > this.finalRangeValue) {
+      throw new Error(`Value is out of range. Use value from ${this.initialRangeValue} to ${this.finalRangeValue}`);
     }
     return numberInRange;
   }
-  
 }
 
 const firstRange = new RangeValidator(6, 47);
-const secondRange = new RangeValidator(-5, 67);
-const thirdRange = new RangeValidator(0, 49);
-const fourthRange = new RangeValidator(36, 6);
-const fifthRange = new RangeValidator('6', NaN);
+const secondRange = new RangeValidator(18, 22);
+// const thirdRange = new RangeValidator(0, 49);
+// const fourthRange = new RangeValidator(36, 6);
+// const fifthRange = new RangeValidator('6', NaN);
 
